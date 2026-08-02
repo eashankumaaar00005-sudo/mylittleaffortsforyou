@@ -1,96 +1,100 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Happy Friendship Day 💙</title>
-    <link rel="stylesheet" href="style.css">
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Happy Friendship Day — A Little Gift For You</title>
+<meta name="description" content="A premium animated Friendship Day wishing experience with memories, floating hearts, confetti and music." />
+<meta property="og:title" content="Happy Friendship Day — A Little Gift For You" />
+<meta property="og:description" content="Open your personalised Friendship Day wish: memories, hearts, confetti and a warm message." />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,600&family=Manrope:wght@300;400;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="style.css" />
 </head>
 <body>
-<audio id="bgMusic" loop>
-    <source src="music.mp3" type="audio/mpeg">
-</audio>
-<div class="intro-overlay">
-    <h1>
-        A Surprise For You 💙
-    </h1>
+
+<!-- ============ AMBIENT BACKGROUND (aurora + particles) ============ -->
+<div class="aurora" aria-hidden="true">
+  <span class="blob blob-1"></span>
+  <span class="blob blob-2"></span>
+  <span class="blob blob-3"></span>
+  <div class="grain"></div>
 </div>
-    <!-- Opening Screen -->
-    <section class="hero">
-        <div class="container">
-            <h1>
-                A Special Surprise For You 💙
-            </h1>
-            <p>
-                Someone wants to tell you something special...
-            </p>
-<div class="name-box">
-    <input 
-    type="text" 
-    id="friendName" 
-    placeholder="Enter your friend's name">
-</div>
-            <button id="openWish">
-                Open Your Surprise 🎁
-            </button>
-        </div>
-    </section>
-<div class="envelope-container">
-    <div class="envelope">
-        <div class="flap"></div>
-        <div class="letter">
-            <p>
-                A special message for you 💙
-            </p>
-        </div>
+<canvas id="particles" aria-hidden="true"></canvas>
+<div id="hearts" class="hearts-layer" aria-hidden="true"></div>
+<canvas id="confetti" aria-hidden="true"></canvas>
+
+<!-- ============ WELCOME / LOADER SCREEN ============ -->
+<section id="welcome" class="welcome">
+  <div class="welcome-inner">
+    <span class="ring" aria-hidden="true"></span>
+    <p class="eyebrow">A little something, just for you</p>
+    <h1 class="welcome-title">Friendship<span>Day</span></h1>
+    <p class="welcome-sub">Turn on the sound for the full feeling.</p>
+    <button id="enterBtn" class="btn btn-primary" type="button">Open my wish</button>
+  </div>
+</section>
+
+<!-- ============ MUSIC TOGGLE ============ -->
+<button id="musicBtn" class="music-btn" type="button" aria-pressed="false" aria-label="Play background music">
+  <span class="bars" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+</button>
+
+<main id="app" class="app" aria-hidden="true">
+
+  <!-- ============ HERO ============ -->
+  <header class="hero">
+    <p class="eyebrow reveal">August · Friendship Day</p>
+    <h2 class="hero-title reveal">
+      Happy <em>Friendship</em> Day
+    </h2>
+    <p class="hero-type reveal">
+      <span id="typewriter" class="type"></span><span class="caret" aria-hidden="true"></span>
+    </p>
+    <div class="hero-cta reveal">
+      <button id="revealBtn" class="btn btn-primary" type="button">Reveal my message</button>
+      <a class="btn btn-ghost" href="#gallery">See our memories</a>
     </div>
-</div>
-    <!-- Main Wish Section -->
-    <section class="wish-section">
-        <div class="container">
-            <h2>
-                Happy Friendship Day ❤️
-            </h2>
-            <h3>
-                Dear Friend
-            </h3>
-            <p>
-                Some friendships are not about how long we know someone,
-                but about how special they make our life feel.
-            </p>
-            <p>
-                Thank you for all the memories, laughter,
-                and beautiful moments we shared together.
-            </p>
-        </div>
-    </section>
-    <!-- Memory Section -->
-    <section class="memory-section">
-        <div class="container">
-            <h2>
-                Our Beautiful Memories 📸
-            </h2>
-            <div class="photo-box">
-                <p>
-                    Add Your Favorite Photo Here
-                </p>
-            </div>
-        </div>
-    </section>
-    <!-- Ending Section -->
-    <section class="ending-section">
-        <div class="container">
-            <h2>
-                Thank You For Being My Friend 💙
-            </h2>
-            <p>
-                Forever grateful for this friendship.
-            </p>
-            <button>
-                Share This Wish
-            </button>
-        </div>
-    </section>
-<script src="script.js"></script>
-</body>
-</html>
+    <div class="scroll-hint reveal" aria-hidden="true"><span></span>scroll</div>
+  </header>
+
+  <!-- ============ PERSONALISED WISH (revealed) ============ -->
+  <section id="wish" class="section">
+    <div class="card glass wish-card">
+      <p class="card-label">A message for you</p>
+      <p class="wish-text">
+        Some people are chapters. You’re the whole story. Thank you for the
+        laughing-till-it-hurts nights, the silent 3 a.m. calls, and for being
+        the one person who never needed an explanation.
+      </p>
+      <p class="wish-sign">— always yours, your favourite person 🤍</p>
+      <div class="wish-actions">
+        <button id="celebrateBtn" class="btn btn-primary" type="button">Celebrate 🎉</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ MEMORY GALLERY ============ -->
+  <section id="gallery" class="section">
+    <h3 class="section-title reveal">Our little museum of memories</h3>
+    <p class="section-sub reveal">Three frames that say more than words ever could.</p>
+    <div class="gallery">
+      <figure class="frame reveal">
+        <img src="assets/images/memory-1.jpg" alt="Two friends laughing together at golden hour" width="900" height="1100" loading="lazy" />
+        <figcaption>The golden hour laugh</figcaption>
+      </figure>
+      <figure class="frame reveal">
+        <img src="assets/images/memory-2.jpg" alt="Friends together on a rooftop under fairy lights" width="900" height="1100" loading="lazy" />
+        <figcaption>Rooftops &amp; endless talks</figcaption>
+      </figure>
+      <figure class="frame reveal">
+        <img src="assets/images/memory-3.jpg" alt="Friends holding hands with sparklers at night" width="900" height="1100" loading="lazy" />
+        <figcaption>Sparks we made ourselves</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ============ PROMISES ============ -->
