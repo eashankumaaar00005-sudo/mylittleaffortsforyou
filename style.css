@@ -217,3 +217,53 @@ button:hover {
         transform:translateY(110vh) rotate(720deg);
     }
 }
+/* =========================
+   ENVELOPE ANIMATION
+========================= */
+.envelope-container{
+    display:flex;
+    justify-content:center;
+    margin-bottom:40px;
+}
+.envelope{
+    position:relative;
+    width:260px;
+    height:170px;
+    background:#164b7a;
+    border-radius:10px;
+    overflow:hidden;
+    box-shadow:0 20px 40px rgba(0,0,0,.3);
+}
+.flap{
+    position:absolute;
+    top:0;
+    left:0;
+    width:0;
+    height:0;
+    border-left:130px solid transparent;
+    border-right:130px solid transparent;
+    border-top:90px solid #246aa5;
+    transform-origin:top;
+    transition:1s;
+}
+.letter{
+    position:absolute;
+    width:220px;
+    height:130px;
+    background:white;
+    color:#123;
+    left:20px;
+    bottom:-120px;
+    border-radius:10px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    transition:1s;
+}
+.envelope.open .flap{
+    transform:rotateX(180deg);
+}
+.envelope.open .letter{
+    bottom:20px;
+}
