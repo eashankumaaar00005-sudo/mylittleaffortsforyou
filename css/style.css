@@ -1,521 +1,285 @@
-/* Global Reset */
+/* =========================
+   GLOBAL STYLE
+========================= */
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
 }
+
 
 body {
-    font-family: Arial, Helvetica, sans-serif;
-    background: #ffffff;
-    color: #111111;
-}
-
-
-/* Header */
-
-header {
-    width: 100%;
-    padding: 20px 8%;
-}
-
-.navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-
-.logo {
-    font-size: 26px;
-    font-weight: 700;
-}
-
-
-.nav-links {
-    display: flex;
-    gap: 30px;
-    list-style: none;
-}
-
-
-.nav-links a {
-    text-decoration: none;
-    color: #111;
-    font-size: 16px;
-}
-
-
-.nav-btn {
-    padding: 12px 25px;
-    border: none;
-    border-radius: 30px;
-    background: #111;
+    background: #081b33;
     color: white;
-    cursor: pointer;
+    overflow-x: hidden;
 }
 
 
+.container {
+    width: 90%;
+    max-width: 1100px;
+    margin: auto;
+}
 
-/* Hero Section */
+
+/* =========================
+   HERO SECTION
+========================= */
 
 .hero {
-    min-height: 80vh;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 50px 8%;
-    gap: 40px;
-}
 
+    min-height: 100vh;
 
-.hero-content {
-    width: 50%;
-}
-
-
-.hero-content h1 {
-    font-size: 60px;
-    line-height: 1.1;
-    margin-bottom: 20px;
-}
-
-
-.hero-content p {
-    font-size: 18px;
-    color: #555;
-    line-height: 1.6;
-    margin-bottom: 30px;
-}
-
-
-.hero-buttons {
-    display: flex;
-    gap: 20px;
-}
-
-
-.hero-buttons button {
-    padding: 14px 30px;
-    border-radius: 30px;
-    border: none;
-    cursor: pointer;
-}
-
-
-.hero-buttons button:first-child {
-    background: #111;
-    color: white;
-}
-
-
-.hero-buttons button:last-child {
-    background: transparent;
-    border: 1px solid #111;
-}
-
-
-
-/* Hero Image */
-
-.hero-image {
-    width: 45%;
-}
-
-
-.hero-image img {
-    width: 100%;
-    border-radius: 20px;
-}
-
-
-
-/* Features */
-
-.features {
     display: flex;
     justify-content: center;
-    gap: 30px;
-    padding: 50px 8%;
-}
+    align-items: center;
 
-
-.card {
-    width: 300px;
-    padding: 30px;
-    border-radius: 20px;
-    background: #f5f5f5;
-}
-
-
-.card h3 {
-    margin-bottom: 10px;
-}
-
-
-
-/* Footer */
-
-footer {
     text-align: center;
-    padding: 30px;
-    background: #111;
-    color: white;
-}
-
-
-
-/* Mobile Responsive */
-
-@media(max-width:768px){
-
-    .nav-links {
-        display:none;
-    }
-
-
-    .hero {
-        flex-direction: column;
-        text-align:center;
-    }
-
-
-    .hero-content,
-    .hero-image {
-        width:100%;
-    }
-
-
-    .hero-content h1 {
-        font-size:40px;
-    }
-
-
-    .hero-buttons {
-        justify-content:center;
-    }
-
-
-    .features {
-        flex-direction:column;
-        align-items:center;
-    }
-
-}
-/* =========================
-   Premium Animations
-========================= */
-
-
-/* Smooth Page Feel */
-
-html {
-    scroll-behavior: smooth;
-}
-
-
-/* Logo Animation */
-
-.logo {
-    transition: 0.3s ease;
-}
-
-.logo:hover {
-    transform: scale(1.05);
-}
-
-
-/* Navigation Hover */
-
-.nav-links a {
-    position: relative;
-    transition: 0.3s ease;
-}
-
-
-.nav-links a::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    bottom: -6px;
-    width: 0%;
-    height: 2px;
-    background: #111;
-    transition: 0.3s ease;
-}
-
-
-.nav-links a:hover::after {
-    width: 100%;
-}
-
-
-
-/* Button Effects */
-
-.nav-btn,
-.hero-buttons button {
-    transition: all 0.3s ease;
-}
-
-
-.nav-btn:hover,
-.hero-buttons button:hover {
-    transform: translateY(-3px);
-    opacity: 0.85;
-}
-
-
-
-/* Hero Animation */
-
-.hero-content {
-    animation: slideLeft 1s ease;
-}
-
-
-.hero-image {
-    animation: slideRight 1s ease;
-}
-
-
-
-@keyframes slideLeft {
-
-    from {
-        opacity:0;
-        transform:translateX(-50px);
-    }
-
-    to {
-        opacity:1;
-        transform:translateX(0);
-    }
-
-}
-
-
-
-@keyframes slideRight {
-
-    from {
-        opacity:0;
-        transform:translateX(50px);
-    }
-
-    to {
-        opacity:1;
-        transform:translateX(0);
-    }
-
-}
-
-
-
-/* Image Premium Effect */
-
-.hero-image img {
-
-    transition:0.5s ease;
-
-}
-
-
-.hero-image img:hover {
-
-    transform:scale(1.03);
-
-}
-
-
-
-/* Feature Card Hover */
-
-.card {
-
-    transition:0.4s ease;
-
-}
-
-
-
-.card:hover {
-
-    transform:translateY(-10px);
-
-    box-shadow:0 20px 40px rgba(0,0,0,0.12);
-
-}
-
-
-
-/* Heading Gradient */
-
-.hero-content h1 {
-
-    background:linear-gradient(
-        90deg,
-        #111,
-        #777
-    );
-
-    -webkit-background-clip:text;
-    -webkit-text-fill-color:transparent;
-
-}
-/* =========================
-   Professional UI Upgrade
-========================= */
-
-
-/* Modern Font */
-
-body {
-    font-family: "Inter", sans-serif;
-}
-
-
-/* Background Upgrade */
-
-body {
 
     background:
-    radial-gradient(
-        circle at top right,
-        rgba(0,0,0,0.08),
-        transparent 35%
-    ),
-    #ffffff;
+    linear-gradient(
+        135deg,
+        #081b33,
+        #123b68,
+        #1c5d99
+    );
 
 }
 
 
+.hero .container {
 
-/* Navbar Upgrade */
+    background: rgba(255,255,255,0.08);
 
-.navbar {
+    backdrop-filter: blur(12px);
 
-    background:rgba(255,255,255,0.7);
+    padding: 50px 30px;
 
-    backdrop-filter:blur(15px);
+    border-radius: 25px;
 
-    padding:15px 25px;
-
-    border-radius:20px;
-
-}
-
-
-
-/* Hero Upgrade */
-
-.hero {
-
-    position:relative;
+    border: 1px solid rgba(255,255,255,0.15);
 
 }
 
 
-.hero-content h1 {
+.hero h1 {
 
-    font-weight:800;
+    font-size: 45px;
 
-    letter-spacing:-2px;
-
-}
-
-
-
-.hero-content p {
-
-    max-width:520px;
+    margin-bottom: 20px;
 
 }
 
 
+.hero p {
 
-/* Premium Hero Image */
+    font-size: 18px;
 
-.hero-image {
+    opacity: .9;
 
-    position:relative;
+    margin-bottom: 35px;
 
 }
 
 
+/* =========================
+   BUTTON
+========================= */
 
-.hero-image::before {
+button {
 
-    content:"";
+    border: none;
 
-    position:absolute;
+    outline: none;
 
-    width:300px;
+    padding: 15px 35px;
+
+    border-radius: 50px;
+
+    font-size: 16px;
+
+    cursor: pointer;
+
+    background: white;
+
+    color: #123b68;
+
+    font-weight: 600;
+
+    transition: .3s;
+
+}
+
+
+button:hover {
+
+    transform: translateY(-5px);
+
+}
+
+
+/* =========================
+   WISH SECTION
+========================= */
+
+.wish-section {
+
+    padding: 100px 0;
+
+    text-align:center;
+
+    background:#0d2745;
+
+}
+
+
+.wish-section h2 {
+
+    font-size:40px;
+
+    margin-bottom:20px;
+
+}
+
+
+.wish-section h3 {
+
+    font-size:28px;
+
+    color:#8fd3ff;
+
+    margin-bottom:25px;
+
+}
+
+
+.wish-section p {
+
+    max-width:700px;
+
+    margin:15px auto;
+
+    line-height:1.8;
+
+    font-size:18px;
+
+}
+
+
+/* =========================
+   MEMORY SECTION
+========================= */
+
+.memory-section {
+
+    padding:100px 0;
+
+    text-align:center;
+
+}
+
+
+.memory-section h2 {
+
+    font-size:35px;
+
+    margin-bottom:40px;
+
+}
+
+
+.photo-box {
 
     height:300px;
 
-    background:#eeeeee;
+    border-radius:25px;
 
-    border-radius:50%;
+    display:flex;
 
-    top:-40px;
+    align-items:center;
 
-    right:-40px;
-
-    z-index:-1;
-
-}
+    justify-content:center;
 
 
+    background:
+    rgba(255,255,255,0.08);
 
-.hero-image img {
 
-    box-shadow:
-    0 30px 60px rgba(0,0,0,0.15);
+    border:2px dashed rgba(255,255,255,.3);
 
 }
 
 
 
-/* Card Upgrade */
+/* =========================
+   ENDING SECTION
+========================= */
 
-.card {
+.ending-section {
 
-    background:white;
+    padding:100px 0;
 
-    border:1px solid rgba(0,0,0,0.08);
+    text-align:center;
 
-    box-shadow:
-    0 10px 30px rgba(0,0,0,0.05);
+    background:#061426;
+
+}
+
+
+.ending-section h2 {
+
+    font-size:35px;
+
+    margin-bottom:20px;
+
+}
+
+
+.ending-section p {
+
+    margin-bottom:35px;
 
 }
 
 
 
-.card p {
+/* =========================
+   MOBILE RESPONSIVE
+========================= */
 
-    color:#666;
-
-    line-height:1.6;
-
-}
+@media(max-width:600px){
 
 
+.hero h1{
 
-/* Button Upgrade */
-
-.hero-buttons button:first-child {
-
-    box-shadow:
-    0 10px 25px rgba(0,0,0,0.2);
+    font-size:32px;
 
 }
 
 
-.hero-buttons button:first-child:hover {
+.hero p{
 
-    box-shadow:
-    0 15px 35px rgba(0,0,0,0.3);
+    font-size:16px;
+
+}
+
+
+.wish-section h2,
+.memory-section h2,
+.ending-section h2{
+
+    font-size:28px;
+
+}
+
+
+.wish-section p{
+
+    font-size:16px;
+
+}
+
 
 }
