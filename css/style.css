@@ -203,3 +203,319 @@ footer {
     }
 
 }
+/* =========================
+   Premium Animations
+========================= */
+
+
+/* Smooth Page Feel */
+
+html {
+    scroll-behavior: smooth;
+}
+
+
+/* Logo Animation */
+
+.logo {
+    transition: 0.3s ease;
+}
+
+.logo:hover {
+    transform: scale(1.05);
+}
+
+
+/* Navigation Hover */
+
+.nav-links a {
+    position: relative;
+    transition: 0.3s ease;
+}
+
+
+.nav-links a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+    width: 0%;
+    height: 2px;
+    background: #111;
+    transition: 0.3s ease;
+}
+
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+
+
+/* Button Effects */
+
+.nav-btn,
+.hero-buttons button {
+    transition: all 0.3s ease;
+}
+
+
+.nav-btn:hover,
+.hero-buttons button:hover {
+    transform: translateY(-3px);
+    opacity: 0.85;
+}
+
+
+
+/* Hero Animation */
+
+.hero-content {
+    animation: slideLeft 1s ease;
+}
+
+
+.hero-image {
+    animation: slideRight 1s ease;
+}
+
+
+
+@keyframes slideLeft {
+
+    from {
+        opacity:0;
+        transform:translateX(-50px);
+    }
+
+    to {
+        opacity:1;
+        transform:translateX(0);
+    }
+
+}
+
+
+
+@keyframes slideRight {
+
+    from {
+        opacity:0;
+        transform:translateX(50px);
+    }
+
+    to {
+        opacity:1;
+        transform:translateX(0);
+    }
+
+}
+
+
+
+/* Image Premium Effect */
+
+.hero-image img {
+
+    transition:0.5s ease;
+
+}
+
+
+.hero-image img:hover {
+
+    transform:scale(1.03);
+
+}
+
+
+
+/* Feature Card Hover */
+
+.card {
+
+    transition:0.4s ease;
+
+}
+
+
+
+.card:hover {
+
+    transform:translateY(-10px);
+
+    box-shadow:0 20px 40px rgba(0,0,0,0.12);
+
+}
+
+
+
+/* Heading Gradient */
+
+.hero-content h1 {
+
+    background:linear-gradient(
+        90deg,
+        #111,
+        #777
+    );
+
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+
+}
+/* =========================
+   Professional UI Upgrade
+========================= */
+
+
+/* Modern Font */
+
+body {
+    font-family: "Inter", sans-serif;
+}
+
+
+/* Background Upgrade */
+
+body {
+
+    background:
+    radial-gradient(
+        circle at top right,
+        rgba(0,0,0,0.08),
+        transparent 35%
+    ),
+    #ffffff;
+
+}
+
+
+
+/* Navbar Upgrade */
+
+.navbar {
+
+    background:rgba(255,255,255,0.7);
+
+    backdrop-filter:blur(15px);
+
+    padding:15px 25px;
+
+    border-radius:20px;
+
+}
+
+
+
+/* Hero Upgrade */
+
+.hero {
+
+    position:relative;
+
+}
+
+
+.hero-content h1 {
+
+    font-weight:800;
+
+    letter-spacing:-2px;
+
+}
+
+
+
+.hero-content p {
+
+    max-width:520px;
+
+}
+
+
+
+/* Premium Hero Image */
+
+.hero-image {
+
+    position:relative;
+
+}
+
+
+
+.hero-image::before {
+
+    content:"";
+
+    position:absolute;
+
+    width:300px;
+
+    height:300px;
+
+    background:#eeeeee;
+
+    border-radius:50%;
+
+    top:-40px;
+
+    right:-40px;
+
+    z-index:-1;
+
+}
+
+
+
+.hero-image img {
+
+    box-shadow:
+    0 30px 60px rgba(0,0,0,0.15);
+
+}
+
+
+
+/* Card Upgrade */
+
+.card {
+
+    background:white;
+
+    border:1px solid rgba(0,0,0,0.08);
+
+    box-shadow:
+    0 10px 30px rgba(0,0,0,0.05);
+
+}
+
+
+
+.card p {
+
+    color:#666;
+
+    line-height:1.6;
+
+}
+
+
+
+/* Button Upgrade */
+
+.hero-buttons button:first-child {
+
+    box-shadow:
+    0 10px 25px rgba(0,0,0,0.2);
+
+}
+
+
+.hero-buttons button:first-child:hover {
+
+    box-shadow:
+    0 15px 35px rgba(0,0,0,0.3);
+
+}
