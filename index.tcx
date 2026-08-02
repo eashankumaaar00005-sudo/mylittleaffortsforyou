@@ -1,0 +1,50 @@
+import { createFileRoute } from "@tanstack/react-router";
+
+// No head() here: the home route inherits title/description/og/twitter from
+// __root.tsx, and ships no og:image so serve-time hosting can inject the
+// project's social preview (explicit og:image or latest screenshot).
+// The Friendship Day experience is a standalone static site (pure HTML/CSS/JS)
+// living in public/friendship-day-website/. This route just sends "/" there.
+export const Route = createFileRoute("/")({
+  component: Index,
+  head: () => ({
+    meta: [
+      { title: "Happy Friendship Day — A Little Gift For You" },
+      {
+        name: "description",
+        content:
+          "A premium animated Friendship Day wishing experience with memories, floating hearts, confetti and music.",
+      },
+      { property: "og:title", content: "Happy Friendship Day — A Little Gift For You" },
+      {
+        property: "og:description",
+        content: "Open your personalised Friendship Day wish: memories, hearts, confetti and music.",
+      },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+    ],
+  }),
+  loader: () => {
+    throw new Response(null, {
+      status: 302,
+      headers: { Location: "/friendship-day-website/index.html" },
+    });
+  },
+  component: () => null,
+});
+
+// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
+function Index() {
+  return (
+    <div
+      className="flex min-h-screen items-center justify-center"
+      style={{ backgroundColor: "#fcfbf8" }}
+    >
+      <img
+        data-lovable-blank-page-placeholder="REMOVE_THIS"
+        src="https://cdn.gpteng.co/blank-app-v1.svg"
+        alt="Your app will live here!"
+      />
+    </div>
+  );
+}
