@@ -4,7 +4,14 @@ const music = document.getElementById("bgMusic");
 
 
 openButton.addEventListener("click", function () {
+const envelope = document.querySelector(".envelope");
 
+
+setTimeout(()=>{
+
+    envelope.classList.add("open");
+
+},800);
     // Music start
     if (music) {
         music.play();
