@@ -2,13 +2,16 @@
 .DS_Store
 Thumbs.db
 desktop.ini
+
 # Editors
 .vscode/
 .idea/
 *.swp
+
 # Logs
 *.log
 npm-debug.log*
+
 # Local env / temp
 .env
 .env.local
