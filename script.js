@@ -1,6 +1,7 @@
 /* =========================
    OPEN SURPRISE BUTTON
 ========================= */
+alert("JS Connected");
 const openButton = document.getElementById("openWish");
 const wishSection = document.querySelector(".wish-section");
 openButton.addEventListener("click", function(){
