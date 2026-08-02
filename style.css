@@ -1,100 +1,100 @@
 
 /* =========================================================
-   Friendship Day — Premium Wishing Experience
-   Mobile-first stylesheet
+   Friendship Day — interactions
+   Sections: Welcome · Typewriter · Reveal · Scroll animations
+             Particles · Hearts · Confetti · Music
    ========================================================= */
+(function () {
+  "use strict";
 
-/* ---------- Design tokens ---------- */
-:root {
-  --ink: #1a0f18;
-  --night: #14060f;
-  --cream: #fff6ef;
-  --rose: #ff6f91;
-  --amber: #ffb86b;
-  --plum: #6d2a5f;
-  --gold: #f7d9a0;
+  const $ = (sel) => document.querySelector(sel);
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  --text: #fdeee6;
-  --muted: rgba(253, 238, 230, 0.68);
+  /* ---------------- Welcome screen ---------------- */
+  const welcome = $("#welcome");
+  const app = $("#app");
 
-  --glass: rgba(255, 255, 255, 0.07);
-  --glass-line: rgba(255, 255, 255, 0.16);
+  function enterExperience() {
+    welcome.classList.add("is-out");
+    app.classList.add("is-in");
+    app.setAttribute("aria-hidden", "false");
+    window.setTimeout(() => { welcome.style.display = "none"; }, 950);
+    startTypewriter();
+    music.start();
+  }
+  $("#enterBtn").addEventListener("click", enterExperience);
 
-  --grad-warm: linear-gradient(135deg, var(--amber), var(--rose) 55%, #b8508f);
-  --grad-text: linear-gradient(100deg, #ffe6c7, #ffb0c4 45%, #ffd9a8);
+  /* ---------------- Typewriter ---------------- */
+  const typeEl = $("#typewriter");
+  const LINES = [
+    "Of all the people the world could have given me, it gave me you.",
+    "Distance never mattered. Silence never mattered.",
+    "You stayed — and that changed everything."
+  ];
 
-  --shadow-soft: 0 18px 50px -18px rgba(0, 0, 0, 0.65);
-  --shadow-glow: 0 0 60px -12px rgba(255, 111, 145, 0.55);
+  function startTypewriter() {
+    if (reduceMotion) { typeEl.textContent = LINES.join(" "); return; }
+    let line = 0, char = 0, deleting = false;
+    (function tick() {
+      const text = LINES[line];
+      typeEl.textContent = deleting ? text.slice(0, char--) : text.slice(0, char++);
+      let delay = deleting ? 22 : 38;
+      if (!deleting && char > text.length) { deleting = true; delay = 1900; }
+      if (deleting && char < 0) { deleting = false; line = (line + 1) % LINES.length; delay = 320; }
+      window.setTimeout(tick, delay);
+    })();
+  }
 
-  --radius: 22px;
-  --pad: 22px;
-  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  /* ---------------- Reveal the wish ---------------- */
+  const wish = $("#wish");
+  $("#revealBtn").addEventListener("click", () => {
+    wish.classList.add("is-open");
+    wish.scrollIntoView({ behavior: "smooth", block: "center" });
+    burstHearts(18);
+    observeReveals();
+  });
 
-  --sans: "Manrope", system-ui, -apple-system, sans-serif;
-  --serif: "Cormorant Garamond", Georgia, serif;
-}
+  $("#celebrateBtn").addEventListener("click", () => {
+    confetti.fire();
+    burstHearts(26);
+  });
 
-/* ---------- Reset ---------- */
-* { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
-body {
-  min-height: 100%;
-  font-family: var(--sans);
-  color: var(--text);
-  background: radial-gradient(120% 90% at 50% -10%, #3b1030 0%, var(--night) 55%, #0b0309 100%);
-  overflow-x: hidden;
-  -webkit-font-smoothing: antialiased;
-}
-img { display: block; max-width: 100%; height: auto; }
-button, a { font: inherit; color: inherit; }
-a { text-decoration: none; }
-:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+  $("#againBtn").addEventListener("click", () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    confetti.fire();
+  });
 
-/* ---------- Ambient background ---------- */
-.aurora { position: fixed; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; }
-.blob { position: absolute; border-radius: 50%; filter: blur(70px); opacity: 0.5; mix-blend-mode: screen; }
-.blob-1 { width: 62vmax; height: 62vmax; left: -22vmax; top: -18vmax; background: radial-gradient(circle, #ff7a9c, transparent 68%); animation: drift 26s var(--ease) infinite alternate; }
-.blob-2 { width: 52vmax; height: 52vmax; right: -18vmax; top: 22vh; background: radial-gradient(circle, #ffb86b, transparent 68%); animation: drift 32s var(--ease) infinite alternate-reverse; }
-.blob-3 { width: 58vmax; height: 58vmax; left: 10vw; bottom: -26vmax; background: radial-gradient(circle, #9b4bd8, transparent 70%); animation: drift 38s var(--ease) infinite alternate; }
-.grain {
-  position: absolute; inset: -50%;
-  background-image: radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px);
-  background-size: 4px 4px; opacity: 0.5;
-  animation: grain 6s steps(6) infinite;
-}
-@keyframes drift {
-  from { transform: translate3d(0, 0, 0) scale(1); }
-  to { transform: translate3d(6vw, 8vh, 0) scale(1.18); }
-}
-@keyframes grain {
-  0%, 100% { transform: translate(0, 0); }
-  25% { transform: translate(-2%, 3%); }
-  50% { transform: translate(3%, -2%); }
-  75% { transform: translate(-3%, -3%); }
-}
+  /* ---------------- Scroll reveal ---------------- */
+  let observer;
+  function observeReveals() {
+    if (!("IntersectionObserver" in window)) {
+      document.querySelectorAll(".reveal").forEach((el) => el.classList.add("is-visible"));
+      return;
+    }
+    if (!observer) {
+      observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry, i) => {
+          if (entry.isIntersecting) {
+            window.setTimeout(() => entry.target.classList.add("is-visible"), i * 90);
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.16, rootMargin: "0px 0px -8% 0px" });
+    }
+    document.querySelectorAll(".reveal:not(.is-visible)").forEach((el) => observer.observe(el));
+  }
+  observeReveals();
 
-#particles, #confetti { position: fixed; inset: 0; width: 100%; height: 100%; pointer-events: none; }
-#particles { z-index: 1; }
-#confetti { z-index: 60; }
-.hearts-layer { position: fixed; inset: 0; z-index: 2; pointer-events: none; overflow: hidden; }
-.heart {
-  position: absolute; bottom: -8vh; font-size: 18px; opacity: 0;
-  animation: floatUp linear forwards;
-  filter: drop-shadow(0 0 10px rgba(255, 111, 145, 0.7));
-}
-@keyframes floatUp {
-  0% { transform: translateY(0) scale(0.6) rotate(0deg); opacity: 0; }
-  12% { opacity: 0.9; }
-  100% { transform: translateY(-112vh) scale(1.1) rotate(24deg); opacity: 0; }
-}
+  /* ---------------- Floating hearts ---------------- */
+  const heartLayer = $("#hearts");
+  const GLYPHS = ["\u2665", "\u2764", "\uD83E\uDD0D", "\u2726"];
 
-/* ---------- Buttons ---------- */
-.btn {
-  display: inline-flex; align-items: center; justify-content: center; gap: 10px;
-  min-height: 52px; padding: 0 26px; border: 0; border-radius: 999px;
-  font-weight: 600; letter-spacing: 0.01em; cursor: pointer;
-  transition: transform 0.35s var(--ease), box-shadow 0.35s var(--ease), opacity 0.3s;
-}
-.btn:active { transform: scale(0.96); }
-.btn-primary {
-  color: #2a0b1c; background: var(--grad-warm);
+  function spawnHeart(fast) {
+    const el = document.createElement("span");
+    el.className = "heart";
+    el.textContent = GLYPHS[Math.floor(Math.random() * GLYPHS.length)];
+    el.style.left = Math.random() * 100 + "vw";
+    el.style.fontSize = 12 + Math.random() * 22 + "px";
+    el.style.animationDuration = (fast ? 5 + Math.random() * 3 : 9 + Math.random() * 7) + "s";
+    heartLayer.appendChild(el);
+    window.setTimeout(() => el.remove(), 17000);
