@@ -1,7 +1,20 @@
 /* =========================
    OPEN SURPRISE BUTTON
 ========================= */
-
+const music = document.getElementById("bgMusic");
+openButton.addEventListener("click", function(){
+    music.play();
+    createConfetti();
+    const nameInput = document.getElementById("friendName");
+    const friendName = document.querySelector(".wish-section h3");
+    if(nameInput.value.trim() !== ""){
+        friendName.innerHTML =
+        "Dear " + nameInput.value + " 💙";
+    }
+    wishSection.scrollIntoView({
+        behavior:"smooth"
+    });
+});
 const openButton = document.getElementById("openWish");
 const wishSection = document.querySelector(".wish-section");
 openButton.addEventListener("click", function(){
