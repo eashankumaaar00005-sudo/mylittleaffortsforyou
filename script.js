@@ -1,71 +1,76 @@
-/* =========================
-   OPEN SURPRISE BUTTON
-========================= */
-const music = document.getElementById("bgMusic");
-openButton.addEventListener("click", function(){
-    music.play();
-    createConfetti();
-    const nameInput = document.getElementById("friendName");
-    const friendName = document.querySelector(".wish-section h3");
-    if(nameInput.value.trim() !== ""){
-        friendName.innerHTML =
-        "Dear " + nameInput.value + " 💙";
-    }
-    wishSection.scrollIntoView({
-        behavior:"smooth"
-    });
-});
 const openButton = document.getElementById("openWish");
 const wishSection = document.querySelector(".wish-section");
-openButton.addEventListener("click", function(){
+const music = document.getElementById("bgMusic");
+
+
+openButton.addEventListener("click", function () {
+
+    // Music start
+    if (music) {
+        music.play();
+    }
+
+
+    // Name change
     const nameInput = document.getElementById("friendName");
     const friendName = document.querySelector(".wish-section h3");
-    if(nameInput.value.trim() !== ""){
-        friendName.innerHTML = 
-        "Dear " + nameInput.value + " 💙";
+
+
+    if (nameInput && nameInput.value.trim() !== "") {
+
+        friendName.innerHTML =
+            "Dear " + nameInput.value + " 💙";
+
+    } else {
+
+        friendName.innerHTML =
+            "Dear Friend 💙";
+
     }
-    else{
-        friendName.innerHTML = 
-        "Dear Friend 💙";
-    }
+
+
+    // Confetti
+    createConfetti();
+
+
+    // Auto scroll
     wishSection.scrollIntoView({
-        behavior:"smooth"
+        behavior: "smooth"
     });
+
+
 });
-/* =========================
-   TYPING EFFECT
-========================= */
-const message = 
-"Some friendships are not about how long we know someone, but about how special they make our life feel.";
-const paragraph = document.querySelector(".wish-section p");
-let index = 0;
-function typeEffect(){
-    if(index < message.length){
-        paragraph.innerHTML += message.charAt(index);
-        index++;
-        setTimeout(typeEffect,40);
+
+
+
+function createConfetti(){
+
+    for(let i = 0; i < 100; i++){
+
+        const confetti = document.createElement("div");
+
+        confetti.className = "confetti";
+
+        confetti.style.left =
+        Math.random() * 100 + "vw";
+
+        confetti.style.background =
+        "hsl(" + Math.random()*360 + ",100%,50%)";
+
+
+        confetti.style.animationDuration =
+        (Math.random()*3+2) + "s";
+
+
+        document.body.appendChild(confetti);
+
+
+        setTimeout(()=>{
+
+            confetti.remove();
+
+        },5000);
+
     }
+
 }
-// Start typing when page loads
-paragraph.innerHTML = "";
-setTimeout(typeEffect,1000);
-/* =========================
-   FLOATING HEART EFFECT
-========================= */
-function createHeart(){
-    const heart = document.createElement("div");
-    heart.innerHTML = "💙";
-    heart.style.position = "fixed";
-    heart.style.left = Math.random()*100 + "vw";
-    heart.style.bottom = "-20px";
-    heart.style.fontSize =
-    Math.random()*20 + 15 + "px";
-    heart.style.animation =
-    "moveHeart 5s linear";
-    heart.style.zIndex = "999";
-    document.body.appendChild(heart);
-    setTimeout(()=>{
-        heart.remove();
-    },5000);
-}
-setInterval(createHeart,700);
