@@ -32,7 +32,13 @@
   --sans: "Manrope", system-ui, -apple-system, sans-serif;
   --serif: "Cormorant Garamond", Georgia, serif;
 }
-
+.emoji{
+    font-family:
+        "Segoe UI Emoji",
+        "Apple Color Emoji",
+        "Noto Color Emoji",
+        sans-serif;
+}
 /* ---------- Reset ---------- */
 * { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
