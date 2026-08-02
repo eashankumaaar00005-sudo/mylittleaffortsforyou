@@ -209,9 +209,9 @@
   /* ---------------- Music (file if present, else soft synth pad) ---------------- */
   const music = (function () {
     const btn = $("#musicBtn");
-    const audio = new Audio("assets/audio/friendship-theme.mp3");
+    const audio = new Audio("assets/audio/music.mp3");
     audio.loop = true;
-    audio.volume = 0.45;
+    audio.volume = 1;
 
     let ctxAudio = null, master = null, voices = [];
     let playing = false, useFile = true;
