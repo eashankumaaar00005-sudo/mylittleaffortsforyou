@@ -57,6 +57,7 @@
     <div class="hero-cta reveal">
       <button id="revealBtn" class="btn btn-primary" type="button">Reveal my message</button>
       <a class="btn btn-ghost" href="#gallery">See our memories</a>
+      <a id="downloadSourceTop" class="btn btn-ghost" href="friendship-day-source.zip" download="friendship-day-website.zip">Download source ZIP</a>
     </div>
     <div class="scroll-hint reveal" aria-hidden="true"><span></span>scroll</div>
   </header>
@@ -98,3 +99,57 @@
   </section>
 
   <!-- ============ PROMISES ============ -->
+  <section class="section">
+    <h3 class="section-title reveal">Three promises</h3>
+    <ul class="promises">
+      <li class="card glass reveal"><span class="num">01</span>I’ll answer, even at 3 a.m.</li>
+      <li class="card glass reveal"><span class="num">02</span>I’ll tell you the truth, kindly.</li>
+      <li class="card glass reveal"><span class="num">03</span>I’ll still be here in ten years.</li>
+    </ul>
+  </section>
+
+  <!-- ============ E-CARD GENERATOR ============ -->
+  <section id="ecard" class="section">
+    <h3 class="section-title reveal">Make a card you can send</h3>
+    <p class="section-sub reveal">Your wish + our memories, turned into one shareable image.</p>
+
+    <div class="card glass ecard-panel reveal">
+      <label class="ecard-field">
+        <span>Their name</span>
+        <input id="ecardName" type="text" maxlength="22" placeholder="e.g. Aarav" autocomplete="off" />
+      </label>
+      <label class="ecard-field">
+        <span>Your message</span>
+        <textarea id="ecardMsg" rows="4" maxlength="240"></textarea>
+      </label>
+      <label class="ecard-field">
+        <span>Signed by</span>
+        <input id="ecardFrom" type="text" maxlength="26" placeholder="e.g. Meera" autocomplete="off" />
+      </label>
+      <div class="ecard-actions">
+        <button id="ecardBtn" class="btn btn-primary" type="button">Generate my e-card</button>
+        <a id="ecardDl" class="btn btn-ghost is-hidden" download="friendship-day-card.png">Download image</a>
+        <button id="ecardShare" class="btn btn-ghost is-hidden" type="button">Share</button>
+      </div>
+      <p id="ecardStatus" class="ecard-status" role="status"></p>
+      <div class="ecard-preview">
+        <canvas id="ecardCanvas" width="1080" height="1350" aria-label="Your Friendship Day e-card preview"></canvas>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ENDING ============ -->
+
+  <footer class="ending">
+    <div class="halo" aria-hidden="true"></div>
+    <h3 class="ending-title reveal">Here’s to us —<br />the forever kind.</h3>
+    <p class="ending-sub reveal">Happy Friendship Day. Thank you for being you.</p>
+    <button id="againBtn" class="btn btn-ghost reveal" type="button">Replay the magic</button>
+    <a id="downloadSourceBottom" class="btn btn-ghost reveal" href="friendship-day-source.zip" download="friendship-day-website.zip">Download source ZIP</a>
+    <p class="credit">Made with hearts, not templates.</p>
+  </footer>
+</main>
+
+<script src="script.js" defer></script>
+</body>
+</html>
