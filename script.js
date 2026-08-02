@@ -5,8 +5,14 @@
 const openButton = document.getElementById("openWish");
 const wishSection = document.querySelector(".wish-section");
 openButton.addEventListener("click", function(){
+    const name = document.getElementById("friendName").value;
+    const friendName = document.querySelector(".wish-section h3");
+    if(name.trim() !== ""){
+        friendName.innerHTML = 
+        "Dear " + name + " 💙";
+    }
     wishSection.scrollIntoView({
-        behavior: "smooth"
+        behavior:"smooth"
     });
 });
 /* =========================
